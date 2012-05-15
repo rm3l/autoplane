@@ -1,4 +1,5 @@
 <?php
+	// Working Location
 	$dir = dirname(__FILE__);
 
 	// Include Classes
@@ -11,6 +12,9 @@
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."command.php";	// Contact with ground
 
 	$log  = new Log ("Main");
+	// Use the main log to show license
+	$log->showLicense();
+
 	$log->log("PHP Version: ".PHP_VERSION, 0);
 	if ((string)PHP_INT_MAX !== "2147483647") {
 		$log->log("Hmm... Special INT Max (". (PHP_INT_MAX) .")", 1);
