@@ -1,5 +1,10 @@
 <div>
   <p class="c4 c19">
+    <span class="c27">Needs someone to tidy up. <a href="https://docs.google.com/document/d/1_onsivHJ4XFArNe6f24yFqLazjh_YV-vK7XMIFngSgo/edit">See full version on Google docs</a></span>
+  </p>
+</div>
+<div>
+  <p class="c4 c19">
     <span class="c27">Last updated: 13/05/2012<br />Fixed lots of spelling and reference errors</span>
   </p>
 </div>
