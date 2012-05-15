@@ -1,11 +1,12 @@
 <?php
+	// Requires STREAMER
 	class Camera {
 		private $log = false;
 		private $counter = 0;
-		private $quality = 100;
-		private $file = false;
-		private $rotate = 9999;
-		private $ext = ".jpg";
+		private $quality = 100; // How share should the images be?
+		private $file = "flight_"; // File prefix
+		private $rotate = 9999; // How many images to save before writing over files
+		private $ext = ".jpg"; // File extension/suffix
 
 		function __construct ($file = false, $size = false, $quality = false, $rotate = false) {
 			$this->log = new log("Camera");
@@ -18,16 +19,20 @@
 			return true;
 		}
 
+		// Take a snap
 		public function takePhoto () {
+			// Do the validation
 			if (!$this->validateFile($this->file) || !$this->validateSize($this->size) || !$this->validateCounter($this->counter) || !$this->validateQuality($this->quality) || !$this->validateRotate($this->rotate)) {
 				return false;
 			}
 			$lines = array();
 			$code = false;
 			$this->counter++;
+			// If we have surpassed our rotate size reset
 			if ($this->counter > $this->rotate) {
 				$this->setCounter(0);
 			}
+			// TODO: TEST
 			$file = escapeshellcmd($this->file.str_repeat("0", strlen((string)$this->counter) - strlen((string)$this->rotate)).$this->counter);
 			$result = exec("streamer -s ".$this->size." -o ".$file." -j ".$this->quality, $lines, $code);
 		}
@@ -108,6 +113,7 @@
 				}
 				return false;
 			}
+			// If we have a max length for a path make sure we can create the file if needed
 			if (PHP_MAXPATHLEN > 0 && ((($file[0] === "/" && strlen($file) + count((string)$this->rotate . $this->ext) > PHP_MAXPATHLEN) || strlen(getcwd().$this->rotate.$this->ext) > PHP_MAXPATHLEN))) {
 				$this->log->log("File too long", 5);
 				return false;
@@ -116,7 +122,7 @@
 		}
 
 		public function setFile($file = false) {
-			if ($this->validateFile($file)) {
+			if (!$this->validateFile($file)) {
 				return false;
 			}
 			$this->file = $file;
