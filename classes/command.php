@@ -1,4 +1,6 @@
 <?php
+	// TODO: Build the rest of the class
+	// Controls connections to server for sending and recieving of messages
 	class CommandAndControl {
 		private $log = false;
 		private $url = false;
