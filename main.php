@@ -10,6 +10,7 @@
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."camera.php";	// Camera Capture
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."tilt.php";	// Tilt/Gryo
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."command.php";	// Contact with ground
+	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."kml.php";	// Parse KML files
 
 	$log  = new Log ("Main");
 	// Use the main log to show license
@@ -31,4 +32,8 @@
 	$math->rollTo($tilt1->getDetails(), $tilt2->getDetails());
 
 	$cnc = new CommandAndControl ("http://flight.youngfreeandginger.co.uk/");
+
+	$kml = new kml ("./flights/test.kml");
+	$kml->parse();
+	var_dump($kml->getDetails());
 ?>
