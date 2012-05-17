@@ -32,6 +32,7 @@
 			$this->setName((string)$kml->Document->name);
 			$this->setDescription((string)$kml->Document->description);
 
+			// Convert the string of coords to an array
 			$points = explode(PHP_EOL, $kml->Document->Placemark->LineString->coordinates);
 			foreach ($points as &$point) {
 				$point = trim($point);
@@ -56,7 +57,7 @@
 			}
 			$name = trim($name);
 			if (strlen($name) === 0) {
-				$this->log->log("Name too short");
+				$this->log->log("Name too short", 2);
 				return false;
 			}
 			$this->log->log("Flight name set to: {$name}", 0);
@@ -76,6 +77,27 @@
 			}
 			$this->description = trim($description);
 			return true;
+		}
+
+		public function addWaypoint ($gps = false) {
+			if (!is_object($gps)) {
+				$this->log->log("Waypoint not GPS location", 1);
+				return false;
+			}
+			if (!is_array($this->waypoints)) {
+				$this->waypoints = array();
+			}
+			$this->waypoints[] = $gps;
+			return true;
+		}
+
+		public function getDetails () {
+			return array(
+				"name"		=> $this->name,
+				"description"	=> $this->description,
+				"waypoints"	=> $this->waypoints,
+				"point"		=> $this->point
+			);
 		}
 	}
 ?>
