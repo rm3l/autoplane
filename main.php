@@ -36,5 +36,7 @@
 
 	$kml = new kml ("./flights/test.kml");
 	$kml->parse();
-	new Flight($kml->getDetails());
+	$flight = new Flight($kml->getDetails());
+	$flight->addWaypoint(new Gps(32, 23, 2532));
+	var_dump($kml->generateKml($flight->getDetails()));
 ?>
