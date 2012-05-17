@@ -1,0 +1,103 @@
+[1337277905.2492]   	Started Logging for: 'Main'
+AutoPlane  Copyright (C) 2012  Paul Hutchinson
+    This program comes with ABSOLUTELY NO WARRANTY; for details see license.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; see license for details.
+
+[1337277905.2496]   	PHP Version: 5.3.10-1ubuntu3.1
+[1337277905.2497]   	Started Logging for: 'GPS'
+[1337277905.2497]   	Creating new GPS Point
+[1337277905.2498]   	Setting Latitude to 25
+[1337277905.2499]   	Setting Longitude to 21
+[1337277905.2499]   	Setting Altitude to 9
+[1337277905.25]   	Setting Time to 1337277905.2496
+[1337277905.2501]   	Started Logging for: 'GPS'
+[1337277905.2501]   	Creating new GPS Point
+[1337277905.2502]   	Setting Latitude to 25
+[1337277905.2503]   	Setting Longitude to 20
+[1337277905.2503]   	Setting Altitude to 3
+[1337277905.2504]   	Setting Time to 1337277905.2501
+[1337277905.2505]   	Started Logging for: 'Tilt'
+[1337277905.2506]   	Creating new Tilt
+[1337277905.2506]   	Setting Tilt X to 100
+[1337277905.2507]   	Setting Tilt Y to 20
+[1337277905.2508]   	Started Logging for: 'Tilt'
+[1337277905.251]   	Creating new Tilt
+[1337277905.251]   	Setting Tilt X to -30
+[1337277905.2511]   	Setting Tilt Y to 10
+[1337277905.2512]   	Started Logging for: 'Math'
+[1337277905.2513]   	Creating new Math Engine
+[1337277905.2514]   	Getting distance from two points
+[1337277905.2515]   	Getting speed from two points
+[1337277905.2516]   	Getting distance from two points
+[1337277905.2517]   	Getting bearing from two points
+[1337277905.2519]   	Converting bearing to English
+[1337277905.2521]   	Collect tilt details
+[1337277905.2522]   	Collect tilt details
+[1337277905.2522]   	Calculating required roll
+[1337277905.2523]   	Started Logging for: 'C&C'
+[1337277905.2524]   	Creating new Command and Control Center
+[1337277905.2527]   	Started Logging for: 'KML'
+[1337277905.2528]   	Creating new KML parse engine
+[1337277905.2529]   	Opening File 
+object(SimpleXMLElement)#16 (1) {
+  ["Document"]=>
+  object(SimpleXMLElement)#17 (4) {
+    ["name"]=>
+    string(19) "The flight of tests"
+    ["description"]=>
+    string(29) "Lets see if we can really fly"
+    ["Style"]=>
+    object(SimpleXMLElement)#18 (3) {
+      ["@attributes"]=>
+      array(1) {
+        ["id"]=>
+        string(19) "yellowLineGreenPoly"
+      }
+      ["LineStyle"]=>
+      object(SimpleXMLElement)#20 (2) {
+        ["color"]=>
+        string(8) "7f00ffff"
+        ["width"]=>
+        string(1) "4"
+      }
+      ["PolyStyle"]=>
+      object(SimpleXMLElement)#21 (1) {
+        ["color"]=>
+        string(8) "7f00ff00"
+      }
+    }
+    ["Placemark"]=>
+    object(SimpleXMLElement)#19 (4) {
+      ["name"]=>
+      string(11) "Flight Plan"
+      ["description"]=>
+      string(30) "Your plane with fly this path."
+      ["styleUrl"]=>
+      string(20) "#yellowLineGreenPoly"
+      ["LineString"]=>
+      object(SimpleXMLElement)#21 (4) {
+        ["extrude"]=>
+        string(1) "1"
+        ["tessellate"]=>
+        string(1) "1"
+        ["altitudeMode"]=>
+        string(8) "absolute"
+        ["coordinates"]=>
+        string(523) "
+					 -112.2550785337791,36.07954952145647,2357
+					-112.2549277039738,36.08117083492122,2357
+					-112.2552505069063,36.08260761307279,2357
+					-112.2564540158376,36.08395660588506,2357
+					-112.2580238976449,36.08511401044813,2357
+					-112.2595218489022,36.08584355239394,2357
+					-112.2608216347552,36.08612634548589,2357
+					-112.262073428656,36.08626019085147,2357
+					-112.2633204928495,36.08621519860091,2357
+					-112.2644963846444,36.08627897945274,2357
+					-112.2656969554589,36.08649599090644,2357 
+				"
+      }
+    }
+  }
+}

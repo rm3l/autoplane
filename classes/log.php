@@ -38,7 +38,7 @@
 					"level" => $level,
 					"time" => microtime(true)
 				);
-			if ($level < $this->level) {
+			if ($level < $this->level && $level > 0) {
 				$this->displayMessage($this->iii);
 			}
 			return $this->iii++;
@@ -51,7 +51,7 @@
 			}
 			$msg = &$this->messages[$id];
 			if ($this->cli) { // Command line mode
-				echo "[".$msg["time"]."]   \t".$msg["message"].PHP_EOL;
+				echo "[".$msg["time"]."]    \t".$msg["message"].PHP_EOL;
 			} else { // HTML mode
 				echo "<span class='time'>",$msg["time"],"</span>",
 				     "<span class='message lvl",$msg["level"],"'>".$msg["message"]."</span><br />";

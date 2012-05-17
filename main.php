@@ -11,6 +11,7 @@
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."tilt.php";	// Tilt/Gryo
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."command.php";	// Contact with ground
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."kml.php";	// Parse KML files
+	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."flight.php";	// Fight engine
 
 	$log  = new Log ("Main");
 	// Use the main log to show license
@@ -35,5 +36,5 @@
 
 	$kml = new kml ("./flights/test.kml");
 	$kml->parse();
-	var_dump($kml->getDetails());
+	new Flight($kml->getDetails());
 ?>

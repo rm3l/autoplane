@@ -23,6 +23,7 @@
 				$this->log->log("File doesn't exist", 2);
 				return false;
 			}
+			$this->xml = false;
 			$this->log->log("Opening File {$file}", 0);
 			$xml = simplexml_load_file($this->file);
 			if ($xml === false) {
@@ -30,8 +31,6 @@
 				return false;
 			}
 
-			// TO DO :: CONVERT EVERYTHING TO ARRAY
-			// EXTRACT THE LIST OF POINTS FOR THE LANDMARK
 			$this->xml = $xml;
 		}
 
