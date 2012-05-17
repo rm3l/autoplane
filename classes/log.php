@@ -38,7 +38,7 @@
 					"level" => $level,
 					"time" => microtime(true)
 				);
-			if ($level < $this->level && $level > 0) {
+			if ($level < $this->level) {
 				$this->displayMessage($this->iii);
 			}
 			return $this->iii++;
