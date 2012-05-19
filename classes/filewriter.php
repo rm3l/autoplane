@@ -81,8 +81,15 @@
 		}
 
 		public function close () {
-			if (!is_resource($this->writer)) {
+			if (!$this->__destruct()) {
 				$this->log->log("Cannot close file when it is not open", 1);
+				return false;
+			}
+			return true;
+		}
+
+		function __destruct () {
+			if (!is_resource($this->writer)) {
 				return false;
 			}
 			return fclose($this->writer);
