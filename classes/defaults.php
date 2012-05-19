@@ -31,4 +31,8 @@
 	define("FlightTimeMax",			3600,			false);	// Seconds
 	define("CommandTimeout",		360,			false);	// Seconds
 	define("BatteryMin",			10,			false); // Percent
+
+
+	/* Prevent overkill */
+	$GLOBALS['rotatingLogs'] = false;
 ?>
