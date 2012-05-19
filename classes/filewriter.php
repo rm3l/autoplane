@@ -38,9 +38,13 @@
 				$this->log->log("Cannot set file whilst a file is already open", 3);
 				return false;
 			}
-			if (!file_exists(dirname($file))) {
-				$this->log->log("Containing folder doesn't exist", 2);
-				return false;
+			$dir = dirname($file);
+			if (!file_exists($dir)) {
+				$this->log->log("Containing folder doesn't exist", 1);
+				if (!mkdir($dir, 0770, true)) {
+					$this->log->log("Failed to create parent folders", 2);
+					return false;
+				}
 			}
 			$this->log->log("Opening file {$file}", 0);
 			if ($unique && file_exists($file)) {
