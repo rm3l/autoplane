@@ -1,4 +1,5 @@
 <?php
+	// Flight Management class
 	class Flight {
 		private $log = false;
 		private $name = false;
@@ -36,7 +37,7 @@
 			$points = explode(PHP_EOL, $kml->Document->Placemark->LineString->coordinates);
 			foreach ($points as &$point) {
 				$point = trim($point);
-				if (strlen($point) < 3) {
+				if (!is_string($point) && strlen($point) < 3) {
 					$this->log->log("Empty point", 0);
 					continue;
 				}
@@ -89,6 +90,21 @@
 			}
 			$this->waypoints[] = $gps;
 			return true;
+		}
+
+		public function getPoint ($point = false) {
+			if ($point === false) {
+				$point = $this->point;
+			}
+			if (!is_int($point)) {
+				$this->log->log("Invalid datatype for Point", 1);
+				return false;
+			}
+			if (!isset($this->waypoints[$point])) {
+				$this->log->log("Point doesn't exist" ,2);
+				return false;
+			}
+			return $this->waypoints;
 		}
 
 		public function getDetails () {
