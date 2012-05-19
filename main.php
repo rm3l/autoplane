@@ -12,6 +12,7 @@
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."command.php";	// Contact with ground
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."kml.php";	// Parse KML files
 	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."flight.php";	// Fight engine
+	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."filewriter.php";// File writing engine
 
 	$log  = new Log ("Main");
 	// Use the main log to show license
