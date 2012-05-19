@@ -1,4 +1,7 @@
 <?php
+	// The stricter we are, the quicker the program should run
+	error_reporting(E_STRICT);
+
 	// Working Location
 	$dir = dirname(__FILE__);
 
