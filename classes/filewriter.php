@@ -25,7 +25,7 @@
 				$this->log->log("Mode unknown", 2);
 				return false;
 			}
-			$this->mode = $mode;
+			$this->mode = &$mode;
 			return true;
 		}
 
@@ -57,7 +57,7 @@
 				}
 				$file = $dir.$iii.$file;
 			}
-			$this->file = $file;
+			$this->file = &$file;
 			return $this->file;
 		}
 

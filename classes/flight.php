@@ -9,7 +9,7 @@
 
 		function __construct ($kml = false) {
 			$this->log = new Log("Flight");
-			$this->loadFlight($kml);
+			$this->loadFlight(&$kml);
 		}
 
 		public function reset () {
@@ -109,10 +109,10 @@
 
 		public function getDetails () {
 			return array(
-				"name"		=> $this->name,
-				"description"	=> $this->description,
-				"waypoints"	=> $this->waypoints,
-				"point"		=> $this->point
+				"name"		=> &$this->name,
+				"description"	=> &$this->description,
+				"waypoints"	=> &$this->waypoints,
+				"point"		=> &$this->point
 			);
 		}
 	}

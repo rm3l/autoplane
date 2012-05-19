@@ -23,8 +23,8 @@
 				$level = 99;
 			}
 			$this->iii = 0;
-			$this->process = $process;
-			$this->level = $level;
+			$this->process = &$process;
+			$this->level = &$level;
 			$this->messages = array();
 			$this->log("Started Logging for: '{$process}'", 0);
 			return true;
@@ -75,8 +75,8 @@
 				return false;
 			}
 			$this->messages[$this->iii] = array(
-					"message" => $msg,
-					"level" => $level,
+					"message" => &$msg,
+					"level" => &$level,
 					"time" => microtime(true)
 				);
 			if ($level < $this->level) {

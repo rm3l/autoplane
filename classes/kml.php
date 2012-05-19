@@ -9,12 +9,12 @@
 			$this->log = new Log("KML");
 			$this->log->log("Creating new KML parse engine", 0);
 			$this->xml = false;
-			$this->file = $file;
+			$this->file = &$file;
 		}
 
 		public function parse ($file = false) {
 			if (is_string($file)) {
-				$this->file = $file;
+				$this->file = &$file;
 			}
 			if (!is_string($this->file)) {
 				$this->log->log("Malformed file", 1);
@@ -32,7 +32,8 @@
 				return false;
 			}
 
-			$this->xml = $xml;
+			$this->xml = &$xml;
+			return true;
 		}
 
 		public function getDetails () {

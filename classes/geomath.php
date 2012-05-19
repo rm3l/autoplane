@@ -84,10 +84,10 @@
 				return false;
 			}
 
-			$lat1	= $gps1["lat"];
-			$long1	= $gps1["long"];
-			$lat2	= $gps2["lat"];
-			$long2	= $gps2["long"];
+			$lat1	= &$gps1["lat"];
+			$long1	= &$gps1["long"];
+			$lat2	= &$gps2["lat"];
+			$long2	= &$gps2["long"];
 
 			return (rad2deg(atan2(sin(deg2rad($long2) - deg2rad($long1)) * cos(deg2rad($lat2)), cos(deg2rad($lat1)) * sin(deg2rad($lat2)) - sin(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($long2) - deg2rad($long1)))) + 360) % 360;
 		}
@@ -95,7 +95,7 @@
 		// Gets the speed in Miles/Kilometers or Nautical miles
 		public function speed ($gps1 = false, $gps2 = false, $unit = "M") {
 			$this->log->log("Getting speed from two points", 0);
-			if (!$this->validateGps($gps1, $gps2, $unit)) {
+			if (!$this->validateGps(&$gps1, &$gps2, &$unit)) {
 				return false;
 			}
 			$distance = $this->distance(&$gps1, &$gps2, &$unit);
@@ -117,10 +117,10 @@
 				return false;
 			}
 
-			$lat1	= $gps1["lat"];
-			$long1	= $gps1["long"];
-			$lat2	= $gps2["lat"];
-			$long2	= $gps2["long"];
+			$lat1	= &$gps1["lat"];
+			$long1	= &$gps1["long"];
+			$lat2	= &$gps2["lat"];
+			$long2	= &$gps2["long"];
 
 			$theta	= $long1 - $long2;
 			$dist	= sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
@@ -147,7 +147,7 @@
 
 		public function rollTo ($tilt1 = false, $tilt2 = false) {
 			$this->log->log("Calculating required roll");
-			if (!$this->validateTilt($tilt1) || !$this->validateTilt($tilt2)) {
+			if (!$this->validateTilt(&$tilt1) || !$this->validateTilt(&$tilt2)) {
 				return false;
 			}
 			return array(

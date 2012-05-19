@@ -18,7 +18,7 @@
 				}
 				return false;
 			}
-			$this->url = $url;
+			$this->url = &$url;
 			return true;
 		}
 

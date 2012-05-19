@@ -40,8 +40,8 @@
 				return false;
 			}
 			return array(
-				"x" => $this->x,
-				"y" => $this->y
+				"x" => &$this->x,
+				"y" => &$this->y
 			);
 		}
 

@@ -66,10 +66,10 @@
 				return false;
 			}
 			return array(
-					"lat" => $this->lat,
-					"long" => $this->long,
-					"alt" => $this->alt,
-					"time" => $this->time
+					"lat" => &$this->lat,
+					"long" => &$this->long,
+					"alt" => &$this->alt,
+					"time" => &$this->time
 				);
 		}
 

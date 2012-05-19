@@ -11,7 +11,7 @@
 		function __construct ($file = false, $size = false, $quality = false, $rotate = false) {
 			$this->log = new log("Camera");
 			$this->log->log("Creating new Camera", 0);
-			$this->setFile($file);
+			$this->setFile(&$file);
 			$this->setSize(&$size);
 			$this->setCounter(0);
 			$this->setQuality(&$quality);
@@ -22,7 +22,7 @@
 		// Take a snap
 		public function takePhoto () {
 			// Do the validation
-			if (!$this->validateFile($this->file) || !$this->validateSize($this->size) || !$this->validateCounter($this->counter) || !$this->validateQuality($this->quality) || !$this->validateRotate($this->rotate)) {
+			if (!$this->validateFile(&$this->file) || !$this->validateSize(&$this->size) || !$this->validateCounter(&$this->counter) || !$this->validateQuality(&$this->quality) || !$this->validateRotate(&$this->rotate)) {
 				return false;
 			}
 			$lines = array();
@@ -51,7 +51,7 @@
 			if ($this->validatecounter(&$counter) === false) {
 				return false;
 			}
-			$this->counter = $counter;
+			$this->counter = &$counter;
 			return true;
 		}
 
@@ -73,7 +73,7 @@
 			if ($this->validateQuality(&$quality) === false) {
 				return false;
 			}
-			$this->quality = $quality;
+			$this->quality = &$quality;
 			return true;
 		}
 
@@ -99,7 +99,7 @@
 		}
 
 		public function setSize ($size = false) {
-			if ($this->validateSize($size) === false) {
+			if ($this->validateSize(&$size) === false) {
 				return false;
 			}
 			$this->size = $size;
@@ -122,7 +122,7 @@
 		}
 
 		public function setFile($file = false) {
-			if (!$this->validateFile($file)) {
+			if (!$this->validateFile(&$file)) {
 				return false;
 			}
 			$this->file = $file;
@@ -143,10 +143,10 @@
 		}
 
 		public function setRotate($rotate = false) {
-			if ($this->validateFile($rotate)) {
+			if ($this->validateFile(&$rotate)) {
 				return false;
 			}
-			$this->rotate = $rotate;
+			$this->rotate = &$rotate;
 			return true;
 		}
 	}
