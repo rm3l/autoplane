@@ -1,12 +1,15 @@
 <?php
 	class Log {
-		private $messages = false;
-		private $level = false;
+		private $messages = false;	// Array messages ready for recall
+		private $level = false;		// Level of which to display messages
 		protected $iii = false;
-		protected $process = 'Unknown';
-		private $cli = true;
+		protected $process = "Unknown";	// Process Name
+		private $cli = true;		// Method of displaying messages
+		private $rotate = 4;		// How many messages to hold before saving to file
+		private $save = true;		// Save old logs to file?
+		private $logDir = "./logs/";	// Where to save our logs
 
-		// Para 1: The main of the process or class we are monitoring
+		// Para 1: The name of the process or class we are monitoring
 		// Para 2: Importance of message to show. Lower you go, more debugging messages you get
 		function __construct ($process = false, $level = false) {
 			// Are we in command line mode or HTML
@@ -27,6 +30,44 @@
 			return true;
 		}
 
+		public function rotateMessages ($limit = false) {
+			if ($GLOBALS['rotatingLogs']) { // Do not write to files whilst rotating
+				return false;
+			}
+			if ($limit === false) {
+				$limit = &$this->rotate;
+			}
+			if (!is_int($limit)) {
+				$this->rotate = 10; // Reset ->rotate to prevent climbing Escher's staircase
+				$this->log("Invalid datatype for rotateMessages", 5);
+				return false;
+			}
+			if (!is_array($this->messages)) {
+				$this->messages = array(); // Once again prevent Escher's staircase
+				$this->log("Invalid datatype for logging messages.", 5);
+			}
+			$ttt = count($this->messages);
+			if ($limit > $ttt) {
+				// No need to do anything because we are under the limit
+				return false;
+			}
+
+			$GLOBALS['rotatingLogs'] = true;
+
+			// First split the array to get the part we'd like to save
+			$tosave = array_splice($this->messages, 0, floor($limit / 2));
+			$filewriter = new FileWriter($this->logDir.$this->process.".log", false);
+
+			foreach ($tosave as $line) {
+				if ($filewriter->write($line["time"]."    ".$line["message"].PHP_EOL) === false) {
+					$this->log("Failed to write line", 2);
+				}
+			}
+			$filewriter->close();
+			$GLOBALS['rotatingLogs'] = false;
+			return true;
+		}
+
 		// Para 1: The message
 		// Para 2: Level of importance, fatal errors should be high
 		public function log ($msg = false, $level = 0) {
@@ -41,6 +82,7 @@
 			if ($level < $this->level) {
 				$this->displayMessage($this->iii);
 			}
+			$this->rotateMessages();
 			return $this->iii++;
 		}
 
