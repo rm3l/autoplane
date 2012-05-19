@@ -1,5 +1,8 @@
 Hello,
 
+==== GLOBAL ====
+1) Call-time pass-by-reference must be allowed
+
 ==== CAMERA ====
 1) Streamer
 2) /dev/video0
