@@ -92,6 +92,7 @@
 			if (!is_resource($this->writer)) {
 				return false;
 			}
+			$this->log->log("Closing file: ".$this->file);
 			return fclose($this->writer);
 		}
 	}
