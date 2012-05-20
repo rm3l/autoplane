@@ -6,8 +6,9 @@
 		private $quality = 100; // Quality of images
 		private $file = "flight_"; // File prefix
 		private $rotate = 9999; // How many images to save before writing over files
-		private $ext = ".jpg"; // File extension/suffix
+		private $ext = ".jpeg"; // File extension/suffix
 		private $device = "/dev/video0";
+		private $size = "320x200";
 
 		function __construct ($file = false, $size = false, $quality = false, $rotate = false) {
 			$this->log = new log("Camera");
@@ -22,8 +23,16 @@
 
 		// Take a snap
 		public function takePhoto () {
+			$this->log->log("Taking snap", 0);
 			// Do the validation
-			if (!$this->validateDevice(&$this->device) || !$this->validateFile(&$this->file) || !$this->validateSize(&$this->size) || !$this->validateCounter(&$this->counter) || !$this->validateQuality(&$this->quality) || !$this->validateRotate(&$this->rotate)) {
+			if (!$this->validateDevice(&$this->device) ||
+				!$this->validateFile(&$this->file) ||
+				!$this->validateSize(&$this->size) ||
+				!$this->validateCounter(&$this->counter) ||
+				!$this->validateQuality(&$this->quality) ||
+				!$this->validateRotate(&$this->rotate)
+			) {
+				$this->log->log("Validation failed", 1);
 				return false;
 			}
 			$lines = array();
@@ -34,11 +43,30 @@
 				$this->setCounter(0);
 			}
 			// TODO: TEST
-			$file = escapeshellcmd($this->file.str_repeat("0", strlen((string)$this->counter) - strlen((string)$this->rotate)).$this->counter);
-			$result = exec("streamer -c ".$this->device." -s ".$this->size." -o ".$file." -j ".$this->quality, $lines, $code);
+			$file = $this->file;
+			$leading = strlen((string)$this->rotate) - strlen((string)$this->counter); // Add leading zeros
+			$file.= str_repeat("0", $leading);
+			$file.= $this->counter;
+			$file.= $this->ext;
+			$command = "streamer -q -c ".$this->device." -s ".$this->size." -o ".$file." -j ".$this->quality;
+			$result = exec($command . " 2>&1", $lines, $code);
+			$result = implode(PHP_EOL, $lines);
+			if ($code !== 0) {
+				if (strlen($result) > 1) {
+					$this->log->log("Camera Error: {$result} ({$code})", 4);
+					return false;
+				}
+				$this->log->log("Camera Error: Unknown Error ({$code})", 5);
+				return false;
+			}
+			if (strlen($result) > 1) {
+				$this->log->log("Camera Warning: {$result}", 1);
+				return false;
+			}
+			return true;
 		}
 
-		public function ($device === false) {
+		public function validateDevice ($device = false) {
 			if (!is_string($device)) {
 				$this->log->log("Invalid datatype for video device", 1);
 				return false;
@@ -104,15 +132,17 @@
 			}
 			$size[0] = (int)$size[0];
 			$size[1] = (int)$size[1];
-			if ($size[0] > 2000 || $size[0] < 300 || $size[1] > 2000 || $size[1] < 300) {
-				$this->log->log("Image size is not allowed", 4);
+			if ($size[0] > 2000 || $size[0] < 300 || $size[1] > 2000 || $size[1] < 200) {
+				$size = $size[0]."x".$size[1];
+				$this->log->log("Image size (".$size.") is not allowed", 4);
 				return false;
 			}
+			$size = $size[0]."x".$size[1];
 			return true;
 		}
 
 		public function setSize ($size = false) {
-			if ($this->validateSize(&$size) === false) {
+			if (!$this->validateSize(&$size)) {
 				return false;
 			}
 			$this->size = $size;
@@ -156,7 +186,7 @@
 		}
 
 		public function setRotate ($rotate = false) {
-			if ($this->validateFile(&$rotate)) {
+			if (!$this->validateFile(&$rotate)) {
 				return false;
 			}
 			$this->rotate = &$rotate;
