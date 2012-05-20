@@ -1,6 +1,6 @@
 <?php
 	// The stricter we are, the quicker the program should run
-	error_reporting(E_STRICT);
+	error_reporting(E_ALL);
 
 	// Working Location
 	$dir = dirname(__FILE__);
@@ -20,8 +20,8 @@
 	include $classesDir."functions.php";	// Other Functions
 
 	$log  = new Log ("Main");
-	// Use the main log to show license
-	$log->showLicense();
+	// Show license
+	showLicense();
 
 	$log->log("PHP Version: ".PHP_VERSION, 0);
 	if ((string)PHP_INT_MAX !== "2147483647") {
