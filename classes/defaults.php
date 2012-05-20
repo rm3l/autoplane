@@ -34,4 +34,5 @@
 
 	/* Prevent overkill */
 	$GLOBALS['rotatingLogs'] = false;
+	$GLOBALS['cli'] = true;
 ?>
