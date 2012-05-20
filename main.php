@@ -4,18 +4,20 @@
 
 	// Working Location
 	$dir = dirname(__FILE__);
+	$classesDir = $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR;
 
 	// Include Classes
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."defaults.php";	// Must be first
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."log.php";	// Logger
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."gps.php";	// GPS
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."geomath.php";	// Math functions
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."camera.php";	// Camera Capture
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."tilt.php";	// Tilt/Gryo
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."command.php";	// Contact with ground
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."kml.php";	// Parse KML files
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."flight.php";	// Fight engine
-	include $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR."filewriter.php";// File writing engine
+	include $classesDir."defaults.php";	// Must be first
+	include $classesDir."log.php";		// Logger
+	include $classesDir."gps.php";		// GPS
+	include $classesDir."geomath.php";	// Math functions
+	include $classesDir."camera.php";	// Camera Capture
+	include $classesDir."tilt.php";		// Tilt/Gryo
+	include $classesDir."command.php";	// Contact with ground
+	include $classesDir."kml.php";		// Parse KML files
+	include $classesDir."flight.php";	// Fight engine
+	include $classesDir."filewriter.php";	// File writing engine
+	include $classesDir."functions.php";	// Other Functions
 
 	$log  = new Log ("Main");
 	// Use the main log to show license
