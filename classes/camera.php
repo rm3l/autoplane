@@ -23,7 +23,7 @@
 		// Take a snap
 		public function takePhoto () {
 			// Do the validation
-			if (!$this->validateDevice(&$this->device);!$this->validateFile(&$this->file) || !$this->validateSize(&$this->size) || !$this->validateCounter(&$this->counter) || !$this->validateQuality(&$this->quality) || !$this->validateRotate(&$this->rotate)) {
+			if (!$this->validateDevice(&$this->device) || !$this->validateFile(&$this->file) || !$this->validateSize(&$this->size) || !$this->validateCounter(&$this->counter) || !$this->validateQuality(&$this->quality) || !$this->validateRotate(&$this->rotate)) {
 				return false;
 			}
 			$lines = array();
