@@ -3,10 +3,11 @@
 	class Camera {
 		private $log = false;
 		private $counter = 0;
-		private $quality = 100; // How share should the images be?
+		private $quality = 100; // Quality of images
 		private $file = "flight_"; // File prefix
 		private $rotate = 9999; // How many images to save before writing over files
 		private $ext = ".jpg"; // File extension/suffix
+		private $device = "/dev/video0";
 
 		function __construct ($file = false, $size = false, $quality = false, $rotate = false) {
 			$this->log = new log("Camera");
@@ -22,7 +23,7 @@
 		// Take a snap
 		public function takePhoto () {
 			// Do the validation
-			if (!$this->validateFile(&$this->file) || !$this->validateSize(&$this->size) || !$this->validateCounter(&$this->counter) || !$this->validateQuality(&$this->quality) || !$this->validateRotate(&$this->rotate)) {
+			if (!$this->validateDevice(&$this->device);!$this->validateFile(&$this->file) || !$this->validateSize(&$this->size) || !$this->validateCounter(&$this->counter) || !$this->validateQuality(&$this->quality) || !$this->validateRotate(&$this->rotate)) {
 				return false;
 			}
 			$lines = array();
@@ -34,7 +35,19 @@
 			}
 			// TODO: TEST
 			$file = escapeshellcmd($this->file.str_repeat("0", strlen((string)$this->counter) - strlen((string)$this->rotate)).$this->counter);
-			$result = exec("streamer -s ".$this->size." -o ".$file." -j ".$this->quality, $lines, $code);
+			$result = exec("streamer -c ".$this->device." -s ".$this->size." -o ".$file." -j ".$this->quality, $lines, $code);
+		}
+
+		public function ($device === false) {
+			if (!is_string($device)) {
+				$this->log->log("Invalid datatype for video device", 1);
+				return false;
+			}
+			if (!file_exists($device)) {
+				$this->log->log("Device doesn't exist", 2);
+				return false;
+			}
+			return true;
 		}
 
 		private function validateCounter ($counter = false) {
@@ -142,11 +155,19 @@
 			return true;
 		}
 
-		public function setRotate($rotate = false) {
+		public function setRotate ($rotate = false) {
 			if ($this->validateFile(&$rotate)) {
 				return false;
 			}
 			$this->rotate = &$rotate;
+			return true;
+		}
+
+		public function setDevice ($device = false) {
+			if (!$this->validateDevice(&$device)) {
+				return false;
+			}
+			$this->device = $device;
 			return true;
 		}
 	}
