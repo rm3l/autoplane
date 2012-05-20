@@ -4,7 +4,7 @@
 		private $log = false;
 		private $counter = 0;
 		private $quality = 100; // Quality of images
-		private $file = "flight_"; // File prefix
+		private $file = "./images/flight_"; // File prefix
 		private $rotate = 9999; // How many images to save before writing over files
 		private $ext = ".jpeg"; // File extension/suffix
 		private $device = "/dev/video0";
@@ -63,6 +63,7 @@
 				$this->log->log("Camera Warning: {$result}", 1);
 				return false;
 			}
+			$this->log->log("Picture Saved!", 0);
 			return true;
 		}
 
@@ -159,6 +160,10 @@
 			// If we have a max length for a path make sure we can create the file if needed
 			if (PHP_MAXPATHLEN > 0 && ((($file[0] === "/" && strlen($file) + count((string)$this->rotate . $this->ext) > PHP_MAXPATHLEN) || strlen(getcwd().$this->rotate.$this->ext) > PHP_MAXPATHLEN))) {
 				$this->log->log("File too long", 5);
+				return false;
+			}
+			if (!is_dir(dirname($file))) {
+				$this->log->log("Folder doesn't exist", 6);
 				return false;
 			}
 			return true;
