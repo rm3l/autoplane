@@ -1,6 +1,6 @@
 <?php
 	// The stricter we are, the quicker the program should run
-	error_reporting(E_ALL);
+	error_reporting(E_STRICT);
 
 	// Working Location
 	$dir = dirname(__FILE__);
@@ -46,8 +46,9 @@
 	$kml->parse();
 	$flight = new Flight($kml->getDetails());
 	$flight->addWaypoint(new Gps(-112.242073428656, 36.02626019082147, 2100));
-	var_dump($kml->generateKml($flight->getDetails(), "./flights/demo.kml"));
+	$kml->generateKml($flight->getDetails(), "./flights/demo.kml");
+
+	// Demo Camera by waiting a second
 	sleep(1);
 	$camera->takePhoto();
-
 ?>
