@@ -32,6 +32,8 @@
 	$tilt1 = new Tilt (100, 20);
 	$tilt2 = new Tilt (-30, 10);
 	$math = new GeoMath();
+	$camera = new Camera();
+	$camera->takePhoto();
 
 	$math->distance($gps1->getDetails(), $gps2->getDetails());
 	$math->speed($gps1->getDetails(), $gps2->getDetails());
@@ -45,4 +47,7 @@
 	$flight = new Flight($kml->getDetails());
 	$flight->addWaypoint(new Gps(-112.242073428656, 36.02626019082147, 2100));
 	var_dump($kml->generateKml($flight->getDetails(), "./flights/demo.kml"));
+	sleep(1);
+	$camera->takePhoto();
+
 ?>
