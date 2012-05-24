@@ -1,14 +1,13 @@
 <?php
 	// Flight Management class
-	class Flight {
-		private $log = false;
+	class Flight extends Log {
 		private $name = false;
 		private $description = false;
 		private $waypoints = array();
 		private $point = 0;
 
 		function __construct ($kml = false) {
-			$this->log = new Log("Flight");
+			parent::__construct("Flight");
 			$this->loadFlight(&$kml);
 		}
 
@@ -23,7 +22,7 @@
 		public function loadFlight ($kml = false) {
 			if (!is_object($kml)) {
 				if ($kml === false) {
-					$this->log->log("Data invalid", 1);
+					$this->log("Data invalid", 1);
 				}
 				return false;
 			}
@@ -38,12 +37,12 @@
 			foreach ($points as &$point) {
 				$point = trim($point);
 				if (!is_string($point) && strlen($point) < 3) {
-					$this->log->log("Empty point", 0);
+					$this->log("Empty point", 0);
 					continue;
 				}
 				$parts = explode(",", $point);
 				if (count($parts) != 3) {
-					$this->log->log("Incorrect line string parameters. Line: {$point}", 1);
+					$this->log("Incorrect line string parameters. Line: {$point}", 1);
 					continue;
 				}
 				$this->waypoints[] = new GPS ((float)$parts[0], (float)$parts[1], (float)$parts[2]);
@@ -53,27 +52,27 @@
 
 		public function setName ($name = false) {
 			if (!is_string($name)) {
-				$this->log->log("Invalid type for name", 1);
+				$this->log("Invalid type for name", 1);
 				return false;
 			}
 			$name = trim($name);
 			if (strlen($name) === 0) {
-				$this->log->log("Name too short", 2);
+				$this->log("Name too short", 2);
 				return false;
 			}
-			$this->log->log("Flight name set to: {$name}", 0);
+			$this->log("Flight name set to: {$name}", 0);
 			$this->name = trim($name);
 			return true;
 		}
 
 		public function setDescription ($description = false) {
 			if (!is_string($description)) {
-				$this->log->log("Invalid type for description", 1);
+				$this->log("Invalid type for description", 1);
 				return false;
 			}
 			$description = trim($description);
 			if (strlen($description) === 0) {
-				$this->log->log("Description too short");
+				$this->log("Description too short");
 				return false;
 			}
 			$this->description = trim($description);
@@ -82,7 +81,7 @@
 
 		public function addWaypoint ($gps = false) {
 			if (!is_object($gps)) {
-				$this->log->log("Waypoint not GPS location", 1);
+				$this->log("Waypoint not GPS location", 1);
 				return false;
 			}
 			if (!is_array($this->waypoints)) {
@@ -97,11 +96,11 @@
 				$point = $this->point;
 			}
 			if (!is_int($point)) {
-				$this->log->log("Invalid datatype for Point", 1);
+				$this->log("Invalid datatype for Point", 1);
 				return false;
 			}
 			if (!isset($this->waypoints[$point])) {
-				$this->log->log("Point doesn't exist" ,2);
+				$this->log("Point doesn't exist" ,2);
 				return false;
 			}
 			return $this->waypoints;

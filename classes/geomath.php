@@ -1,17 +1,16 @@
 <?php
-	class GeoMath {
-		private $log = false;
+	class GeoMath extends Log {
 		function __construct () {
-			$this->log = new log("Math");
-			$this->log->log("Creating new Math Engine", 0);
+			parent::__construct("Math");
+			$this->log("Creating new Math Engine", 0);
 		}
 
 		private function validateGps ($gps1 = false, $gps2 = false, $unit = false) {
 			if (!is_array($gps1) || !is_array($gps2)) {
-				$this->log->log("Failed to read GPS data", 10);
+				$this->log("Failed to read GPS data", 10);
 				return false;
 			} elseif($unit !== true && ($unit !== "M" && $unit !== "N" && $unit !== "K")) {
-				$this->log->log("Failed to read required output type", 10);
+				$this->log("Failed to read required output type", 10);
 				return false;
 			}
 			return true;
@@ -19,9 +18,9 @@
 
 		// Converts a bearing to English
 		public function bearingToEng ($bearing = false) {
-			$this->log->log("Converting bearing to English", 0);
+			$this->log("Converting bearing to English", 0);
 			if (!is_int($bearing) || $bearing > 360 || $bearing < 0) {
-				$this->log->log("Malformed Bearing", 1);
+				$this->log("Malformed Bearing", 1);
 			}
 			$bearing = round($bearing / 22.5);
 			switch($bearing) {
@@ -79,7 +78,7 @@
 
 		// Passing two GPS locations will produce a bearing 0-360
 		public function bearing ($gps1 = false, $gps2 = false) {
-			$this->log->log("Getting bearing from two points", 0);
+			$this->log("Getting bearing from two points", 0);
 			if (!$this->validateGps($gps1, $gps2, true)) {
 				return false;
 			}
@@ -94,7 +93,7 @@
 
 		// Gets the speed in Miles/Kilometers or Nautical miles
 		public function speed ($gps1 = false, $gps2 = false, $unit = "M") {
-			$this->log->log("Getting speed from two points", 0);
+			$this->log("Getting speed from two points", 0);
 			if (!$this->validateGps(&$gps1, &$gps2, &$unit)) {
 				return false;
 			}
@@ -112,7 +111,7 @@
 
 		// Gets the distance between two points in Miles/Kilometers or Nautical miles
 		public function distance ($gps1 = false, $gps2 = false, $unit = "M") {
-			$this->log->log("Getting distance from two points", 0);
+			$this->log("Getting distance from two points", 0);
 			if (!$this->validateGps($gps1, $gps2, $unit)) {
 				return false;
 			}
@@ -139,14 +138,14 @@
 
 		private function validateTilt ($tilt = false) {
 			if (!is_array($tilt) || !is_float($tilt["x"]) || !is_float($tilt["y"])) {
-				$this->log->log("Tilt invalid", 2);
+				$this->log("Tilt invalid", 2);
 				return false;
 			}
 			return true;
 		}
 
 		public function rollTo ($tilt1 = false, $tilt2 = false) {
-			$this->log->log("Calculating required roll");
+			$this->log("Calculating required roll");
 			if (!$this->validateTilt(&$tilt1) || !$this->validateTilt(&$tilt2)) {
 				return false;
 			}

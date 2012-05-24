@@ -1,12 +1,11 @@
 <?php
 	// TODO: Build the rest of the class
 	// Controls connections to server for sending and recieving of messages
-	class CommandAndControl {
-		private $log = false;
+	class CommandAndControl extends Log {
 		private $url = false;
 		function __construct ($url = false) {
-			$this->log = new Log("C&C");
-			$this->log->log("Creating new Command and Control Center", 0);
+			parent::__construct("C&C");
+			$this->log("Creating new Command and Control Center", 0);
 			$this->setUrl(&$url);
 			return true;
 		}
@@ -14,7 +13,7 @@
 		public function setUrl ($url = false) {
 			if(!preg_match("|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i", $url)) {
 				if ($url) {
-					$this->log->log("Url is not valid", 0);
+					$this->log("Url is not valid", 0);
 				}
 				return false;
 			}
