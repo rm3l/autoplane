@@ -18,6 +18,7 @@
 	include $classesDir."kml.php";			// Parse KML files
 	include $classesDir."flight.php";		// Fight engine
 	include $classesDir."filewriter.php";		// File writing engine
+	include $classesDir."hardware.php";		// Hardware, Socket
 	include $classesDir."functions.php";		// Other Functions
 
 	$log  = new Log ("Main");
@@ -52,4 +53,6 @@
 	// Demo Camera by waiting a second
 	sleep(1);
 	$camera->takePhoto();
+
+	var_dump(memory_get_peak_usage(true));
 ?>
