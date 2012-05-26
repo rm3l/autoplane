@@ -1,14 +1,27 @@
 <?php
 	class GPS extends Log {
-		private $lat = false;
-		private $long = false;
-		private $alt = false;
-		private $time = false;
+		private $lat = false;	// Latitude
+		private $long = false;	// Longitude
+		private $alt = false;	// Altitude
+		private $time = false;	// The time
+		private $dop = false;	// Dilution of Precision
 
-		function __construct ($lat = false, $long = false, $alt = false, $time = false) {
+		function __construct ($lat = false, $long = false, $alt = false, $time = false, $dop = false) {
 			parent::__construct("GPS");
 			$this->log("Creating new GPS Point", 0);
-			$this->update(&$lat, &$long, &$alt, &$time);
+			$this->update(&$lat, &$long, &$alt, &$time, &$dop);
+			return true;
+		}
+
+		public function setDop ($dop = false) {
+			if (!is_int($dop)) {
+				if ($dop !== false) {
+					$this->log("Failed to set Dilution of Precision to {$dop}", 0);
+				}
+				return false;
+			}
+			$this->log("Setting Latitude to {$dop}", 0);
+			$this->dop = $dop;
 			return true;
 		}
 
@@ -68,16 +81,18 @@
 					"lat" => &$this->lat,
 					"long" => &$this->long,
 					"alt" => &$this->alt,
-					"time" => &$this->time
+					"time" => &$this->time,
+					"dop" => &$this->dop
 				);
 		}
 
-		public function update ($lat = false, $long = false, $alt = false, $time = false) {
+		public function update ($lat = false, $long = false, $alt = false, $time = false, $dop = false) {
 			$this->log("Updaing GPS", 0);
 			$this->setLat(&$lat);
 			$this->setLong(&$long);
 			$this->setAlt(&$alt);
 			$this->setTime(&$time);
+			$this->setDop(&$dop);
 		}
 	}
 ?>
