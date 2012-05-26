@@ -7,7 +7,7 @@
 	$classesDir = $dir.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR;
 
 	// Include Classes
-	include $classesDir."include.php";		// Include all the files we require
+	include $classesDir."include.php";
 
 	// Create a Main log
 	$log  = new Log ("Main");
@@ -46,6 +46,16 @@
 	// Demo Camera by waiting a second, so we can see a difference
 	sleep(1);
 	$camera->takePhoto();
+
+	// GPS Daemon
+	$ttt = 10;
+	$iii = 0;
+	$gpsd = new GPSD("127.0.0.1", 2947);
+	do {
+		// the idea is two wrap this in your main () loop so you can async(ist get data from it)
+		$data = $gpsd->poll();
+		$iii++;
+	} while ((!is_array($data) || count($data) < 1) && $iii < $ttt);
 
 	// Keep me low
 	echo memory_get_peak_usage(true);
