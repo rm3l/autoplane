@@ -33,7 +33,7 @@
 
 		public function write ($data = false) {
 			if (!is_resource($this->connection)) {
-				$this->log("Cannot read from socket because it's not open", 2);
+				$this->log("Cannot write from socket because it's not open", 2);
 				return false;
 			}
 			if (!is_string($data)) {
@@ -57,20 +57,12 @@
 				$this->log("Cannot read from socket because it's not open", 2);
 				return false;
 			}
-			// Infinite bytes
-			if ($bytes === false) {
-				$this->log("Reading Socket forever", 0);
-				$data = fgets($this->connection);
-			// Bytes > 10b AND Bytes < 50MB
-			} elseif (is_int($bytes) && $bytes > 10 && $bytes < 52428800) {
-				$this->log("Reading {$bytes} bytes from Socket", 0);
-				$data = fgets($this->connection, $bytes);
-			// Bugger error
-			} else {
+			if (!is_int($bytes) || $bytes < 10 || $bytes > 52428800) {
 				$this->log("Invalid datatype for bytes, or bytes requested to high or low", 2);
 				return false;
 			}
-
+			$this->log("Reading {$bytes} bytes from Socket", 0);
+			$data = fread($this->connection, $bytes);
 			if (!is_string($data)) {
 				$this->log("Failed to read from stream", 2);
 				return false;
