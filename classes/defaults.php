@@ -34,5 +34,7 @@
 
 	/* Prevent overkill */
 	$GLOBALS['rotatingLogs'] = false;
-	$GLOBALS['cli'] = true;
+
+	/* Output mode */
+	$GLOBALS["cli"] = php_sapi_name() == "cli";
 ?>

@@ -12,9 +12,8 @@
 			return true;
 		}
 
-		public function create ($location = false) {
-			$this->setLocation(&$location);
-			if (is_resource($this->connection)) {
+		public function create () {
+			if (!is_resource($this->connection)) {
 				$this->log("Not opening socket because it's already open", 2);
 				return false;
 			}
@@ -23,7 +22,6 @@
 				$this->log("Failed to open socket: (".$this->errno.") ".$this->errstr, 3);
 				return false;
 			}
-			$this->log("Opened Socket", 0);
 			return true;
 		}
 
@@ -55,15 +53,13 @@
 			}
 			// Infinite bytes
 			if ($bytes === false) {
-				$this->log("Reading Socket forever", 0);
 				$data = fgets($this->connection);
 			// Bytes > 10b AND Bytes < 50MB
 			} elseif (is_int($bytes) && $bytes > 10 && $bytes < 52428800) {
-				$this->log("Reading {$bytes}bytes from Socket", 0);
 				$data = fgets($this->connection, $bytes);
 			// Bugger error
 			} else {
-				$this->log("Invalid datatype for bytes, or bytes requested to high or low", 2);
+				$this->log("Invalid datatype for bytes", 2);
 				return false;
 			}
 
@@ -94,14 +90,13 @@
 				}
 				return false;
 			}
+			/*	Commented out because some sockets we can't check if it exists
+			if (!file_exists($location)) {
+				$this->log("Location for socket doesn't exist", 2);
+				return false;
+			}*/
 			$this->location = $location;
 			return true;
 		}
 	}
-
-	$socket = new Socket("unix:///p/autoplane/sockets/gpsd");
-	$socket->create();
-	var_dump( $socket->read(55) );;
-
-	die;
 ?>
