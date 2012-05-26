@@ -27,6 +27,17 @@
 				return false;
 			}
 			// Store the value for cache like effect
+			if (isset($data["sky"])) {
+				$sky = current($data["sky"]);
+				$satellites = $sky["satellites"];
+				$used = 0;
+				foreach ($satellites as $satellite) {
+					if ($satellite["used"]) {
+						$used++;
+					}
+				}
+				$this->log("Using {$used} out of ".count($satellites)." satellites", 0);
+			}
 			$this->data = &$data;
 			return $this->data;
 		}
