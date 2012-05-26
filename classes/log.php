@@ -5,7 +5,7 @@
 		private $level = false;		// Level of which to display messages
 		private $iii = false;
 		private $process = "Unknown";	// Process Name
-		private $rotate = 4;		// How many messages to hold before saving to file
+		private $rotate = 400;		// How many messages to hold before saving to file
 		private $save = true;		// Save old logs to file?
 		private $logDir = "./logs/";	// Where to save our logs
 
