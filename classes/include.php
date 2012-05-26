@@ -12,5 +12,6 @@
 	include $classesDir."flight.php";		// Fight engine
 	include $classesDir."filewriter.php";		// File writing engine
 	include $classesDir."sockets.php";		// Hardware, Socket
+	include $classesDir."sockets.gpsd.php";		// GPSD
 	include $classesDir."functions.php";		// Other Functions
 ?>
