@@ -28,15 +28,24 @@
 			}
 			// Store the value for cache like effect
 			if (isset($data["sky"])) {
-				$sky = current($data["sky"]);
-				$satellites = $sky["satellites"];
-				$used = 0;
-				foreach ($satellites as $satellite) {
-					if ($satellite["used"]) {
-						$used++;
+				$sky = current($data["sky"]); // We are only using one device
+				if (!is_array($sky)) { // Shouldn't happen but we need to catch them anyway
+					$this->log("No sky found", 1);
+				} else {
+					$satellites = $sky["satellites"];
+					$satCount = count($satellites);
+					if (!is_array($satellites) || $satCount < 1) { // No satellites
+						$this->log("Couldn't find any satellites", 0);
+					} else {
+						$used = 0; // Count the ones we used
+						foreach ($satellites as $satellite) {
+							if ($satellite["used"]) {
+								$used++;
+							}
+						}
+						$this->log("Using {$used} out of ".$satCount." satellites", 0);
 					}
 				}
-				$this->log("Using {$used} out of ".count($satellites)." satellites", 0);
 			}
 			$this->data = &$data;
 			return $this->data;
