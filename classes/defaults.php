@@ -3,7 +3,7 @@
 	define("Creator",			"Paul Hutchinson",	false);
 	define("Copyright",			"Paul Hutchinson 2012",	false);
 	define("Licence",		"GNU General Public License",	false); // Take note
-	define("Version",			0.01,			false);
+	define("Version",			0.66,			false);
 	define("ChecksumSalt",			"lfogit66S",		false);
 
 	/* Speed */
