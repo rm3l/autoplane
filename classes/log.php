@@ -7,7 +7,7 @@
 		private $process = "Unknown";	// Process Name
 		private $rotate = 400;		// How many messages to hold before saving to file
 		private $save = true;		// Save old logs to file?
-		private $logDir = "./logs/";	// Where to save our logs
+		private $logDir = false;	// Where to save our logs
 
 		// Para 1: The name of the process or class we are monitoring
 		// Para 2: Importance of message to show. Lower you go, more debugging messages you get
@@ -24,11 +24,12 @@
 			$this->level = &$level;
 			$this->messages = array();
 			$this->log("Started Logging for: '{$process}'", 0);
+			$this->logDir = $logDir = ".".DIRECTORY_SEPARATOR."logs".DIRECTORY_SEPARATOR;
 			return true;
 		}
 
 		public function rotateMessages ($limit = false) {
-			if ($GLOBALS['rotatingLogs']) { // Do not write to files whilst rotating
+			if ($GLOBALS["rotatingLogs"]) { // Do not write to files whilst rotating
 				return false;
 			}
 			if ($limit === false) {
@@ -49,7 +50,7 @@
 				return false;
 			}
 
-			$GLOBALS['rotatingLogs'] = true;
+			$GLOBALS["rotatingLogs"] = true;
 
 			// First split the array to get the part we'd like to save
 			$tosave = array_splice($this->messages, 0, floor($limit / 2));
