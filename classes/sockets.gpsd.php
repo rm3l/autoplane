@@ -17,8 +17,8 @@
 				return $this->write("?POLL;\n"); // Send new request
 			}
 			$matches = array();
-			if (!preg_match('/{"class":"POLL".+}/i', $this->read(2000), $matches)) {
-				$this->log("No match for GPS data this time round. Not an error.", 0);
+			if (!preg_match('/{"class":"POLL".+}/i', $this->read(2048), $matches)) {
+				$this->log("No match for GPS data this time round. Not an error", -1);
 				return false;
 			}
 			$data = json_decode($matches[0], true);
