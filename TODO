@@ -1,0 +1,5 @@
+Before creating a compressed version all double quotes
+should be replaced with single quotes because it's
+slighty faster. The Logs should also be set slightly
+higher because we are no longer testing. We are
+distributing and we want to cut out some buff.
