@@ -71,13 +71,17 @@
 			return $data;
 		}
 
-		public function close () {
+		public function close ($quite = false) {
 			if (!is_resource($this->connection)) {
-				$this->log("Failed to close socket because it has being created", 2);
+				if (!$quite) {
+					$this->log("Failed to close socket because it has being created", 2);
+				}
 				return false;
 			}
 			if (!fclose($this->connection)) {
-				$this->log("Failed to close socket", 3);
+				if (!$quite) {
+					$this->log("Failed to close socket", 3);
+				}
 				return false;
 			}
 			return true;
@@ -104,6 +108,11 @@
 			$this->log("Setting port to {$port}");
 			$this->port = $port;
 			return true;
+		}
+
+		function __destruct () {
+			$this->log("Closing Socket", 0);
+			$this->close(true);
 		}
 	}
 ?>
