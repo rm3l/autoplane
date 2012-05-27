@@ -3,10 +3,10 @@
 	class Camera extends Log {
 		private $counter = 0;
 		private $quality = 100; // Quality of images
-		private $file = "./images/flight_"; // File prefix
+		private $file = false; // File prefix
 		private $rotate = 9999; // How many images to save before writing over files
 		private $ext = ".jpeg"; // File extension/suffix
-		private $device = "/dev/video0";
+		private $device = false;
 		private $size = "320x200";
 
 		function __construct ($file = false, $size = false, $quality = false, $rotate = false) {
@@ -17,6 +17,8 @@
 			$this->setCounter(0);
 			$this->setQuality(&$quality);
 			$this->setRotate(&$rotate);
+			$this->file = ".".DIRECTORY_SEPARATOR."images".DIRECTORY_SEPARATOR."flight_";
+			$this->device = DIRECTORY_SEPARATOR."dev".DIRECTORY_SEPARATOR."video0";
 			return true;
 		}
 
