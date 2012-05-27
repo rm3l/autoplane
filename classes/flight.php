@@ -42,7 +42,7 @@
 				}
 				$parts = explode(",", $point);
 				if (count($parts) != 3) {
-					$this->log("Incorrect line string parameters. Line: {$point}", 1);
+					$this->log("Incorrect line string parameters. Line: {$point}", 0);
 					continue;
 				}
 				$this->waypoints[] = new GPS ((float)$parts[0], (float)$parts[1], (float)$parts[2]);
