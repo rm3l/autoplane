@@ -52,11 +52,8 @@
 	$iii = 0;
 	$gpsd = new GPSD("127.0.0.1", 2947);
 	do {
-		// the idea is two wrap this in your main () loop so you can async(ist get data from it)
+		// the idea is two wrap this in your main () loop so you can async(ish) get data from it
 		$data = $gpsd->poll();
 		$iii++;
 	} while ((!is_array($data) || count($data) < 1) && $iii < $ttt);
-
-	// Keep me low
-	echo memory_get_peak_usage(true);
 ?>
