@@ -5,5 +5,10 @@ Hello,
 
 ==== CAMERA ====
 1) Streamer
-2) /dev/video0
-3) A Camera
+2) /dev/video0 or simlar
+3) A Camera or you wont get a video device in /dev/. Duh!
+
+==== GPS ====
+1) GPSD
+2) /dev/ttyUSB0 or simlar
+3) A GPS Dongle or you wont get a device in /dev/. Duh!
