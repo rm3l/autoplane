@@ -3,8 +3,8 @@
 		private $completed = true; // Are we sending or receving
 		private $data = false; // Use as a light weight cache thing
 
-		function __construct () {
-			parent::__construct("127.0.0.1", 2947);
+		function __construct ($host = false, $port = false) {
+			parent::__construct($host, $port);
 			$this->connect();
 			$this->write("?WATCH={\"enable\":true};\n");
 		}
@@ -14,7 +14,8 @@
 			if ($this->completed) {
 				$this->log("Requesting GPS Update", 0);
 				$this->completed = false;
-				return $this->write("?POLL;\n"); // Send new request
+				$this->write("?POLL;\n"); // Send new request
+				return true;
 			}
 			$matches = array();
 			if (!preg_match('/{"class":"POLL".+}/i', $this->read(2048), $matches)) {
@@ -32,7 +33,12 @@
 				if (!is_array($sky)) { // Shouldn't happen but we need to catch them anyway
 					$this->log("No sky found", 1);
 				} else {
-					$satellites = $sky["satellites"];
+					if (!isset($sky["satellites"])) {
+						$satellites = false;
+					} else {
+						$satellites = $sky["satellites"];
+						$satCount($satellites);
+					}
 					$satCount = count($satellites);
 					if (!is_array($satellites) || $satCount < 1) { // No satellites
 						$this->log("Couldn't find any satellites", 0);
