@@ -1,7 +1,9 @@
 <?php
 	function shutdown () {
 		global $log; // Use main log
-		$log->log("Memory peak usage ". bytes2human(memory_get_peak_usage(true)), 50);
+		if (is_object($log)) {
+			$log->log("Memory peak usage ". bytes2human(memory_get_peak_usage(true)), 50);
+		}
 	}
 
 	register_shutdown_function("shutdown");
@@ -25,5 +27,11 @@
 		$sz = "BKMGTP";
 		$factor = floor((strlen($bytes) - 1) / 3);
 		return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+	}
+
+	// Stolen from http://php.net/manual/en/function.feof.php
+	function safe_feof($fp, &$start = null) {
+		$start = microtime(true);
+		return feof($fp);
 	}
 ?>
