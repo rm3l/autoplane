@@ -32,9 +32,20 @@
 	define("CommandTimeout",		360,			false);	// Seconds
 	define("BatteryMin",			10,			false); // Percent
 
+	/* SHMOP Allocations for IPC */
+	define("SHMOP_CAMERA",			13110,			false); // Camera Daemon
+	define("SHMOP_GPS",			13370,			false); // GPS Daemon
+	define("SHMOP_GRYO",			13380,			false); // Gryo Daemon
+	define("SHMOP_PROX",			13100,			false); // Proximity Daemon
+	define("SHMOP_TRASH",			13390,			false); // Other Comunications
+	define("SHMOP_SALT",			(int)rand(0, 65000),	false); // Store it somewhere new
+
 	/* Prevent overkill */
-	$GLOBALS['rotatingLogs'] = false;
+	$GLOBALS["rotatingLogs"] = false;
 
 	/* Output mode */
 	$GLOBALS["cli"] = php_sapi_name() == "cli";
+
+	/* Counters */
+	$GLOBALS["totalMessageCounter"] = 0;
 ?>
