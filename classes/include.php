@@ -14,4 +14,5 @@
 	include $classesDir."sockets.php";		// Hardware, Socket
 	include $classesDir."sockets.gpsd.php";		// GPSD
 	include $classesDir."functions.php";		// Other Functions
+	include $classesDir."shmop.php";		// SHMOP
 ?>
