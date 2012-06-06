@@ -53,7 +53,7 @@
 			$GLOBALS["rotatingLogs"] = true;
 
 			// First split the array to get the part we'd like to save
-			$tosave = array_splice($this->messages, 0, floor($limit / 2));
+			$tosave = array_splice($this->messages, 0, $limit);
 			$filewriter = new FileWriter($this->logDir.$this->process.".log", false);
 
 			foreach ($tosave as $line) {
@@ -61,8 +61,9 @@
 					$this->log("Failed to write line", 2);
 				}
 			}
+
 			$filewriter->close();
-			$GLOBALS['rotatingLogs'] = false;
+			$GLOBALS["rotatingLogs"] = false;
 			return true;
 		}
 
@@ -72,6 +73,7 @@
 			if (!is_string($msg) || !is_int($level)) {
 				return false;
 			}
+			$GLOBALS["totalMessageCounter"]++;
 			$this->messages[$this->iii] = array(
 					"message" => &$msg,
 					"level" => &$level,
