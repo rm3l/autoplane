@@ -40,20 +40,12 @@
 	$kml = new kml ("./flights/test.kml");
 	$kml->parse();
 	$flight = new Flight($kml->getDetails());
-	$flight->addWaypoint(new Gps(-112.242073428656, 36.02626019082147, 2100));
+	$flight->addWaypoint(new GPS(-112.242073428656, 36.02626019082147, 2100));
 	$kml->generateKml($flight->getDetails(), "./flights/demo.kml");
 
 	// Demo Camera by waiting a second, so we can see a difference
 	sleep(1);
 	$camera->takePhoto();
 
-	// GPS Daemon
-	$ttt = 10;
-	$iii = 0;
-	$gpsd = new GPSD("127.0.0.1", 2947);
-	do {
-		// the idea is two wrap this in your main () loop so you can async(ish) get data from it
-		$data = $gpsd->poll();
-		$iii++;
-	} while ((!is_array($data) || count($data) < 1) && $iii < $ttt);
+	// GPS demo moved to GPS.php
 ?>
