@@ -5,7 +5,7 @@
 		private $port = 0;		// Have a guess
 		private $errno = false;		// Socket Error number
 		private $errstr = false;	// Socket Error string
-		private $timeout = 3;		// How long to wait?
+		private $timeout = 5;		// How long to wait?
 
 		function __construct ($location = false, $port = false) {
 			parent::__construct("Socket");
@@ -119,12 +119,8 @@
 				return false;
 			}
 			$this->log("Reading {$bytes} bytes from Socket", 0);
-			if (feof($this->connection)) {
-				$this->log("End of file reached", 1);
-				$this->close();
-				return false;
-			}
-			$data = fread($this->connection, $bytes);
+			$start = null;
+			$data = fgets($this->connection, $bytes);
 			if (!is_string($data)) {
 				$this->log("Failed to read from stream", 2);
 				return false;
@@ -146,6 +142,7 @@
 				}
 				return false;
 			}
+			$this->start = microtime(true);
 			return true;
 		}
 
@@ -178,3 +175,4 @@
 		}
 	}
 ?>
+
