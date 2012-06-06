@@ -1,0 +1,5 @@
+===== Memory Management in the log class =====
+100769 messages to the log peaks at 1.25MB. This does not
+include all the other functions and variables that are
+loaded at run time. This shows that memory management is
+working great.
