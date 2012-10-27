@@ -1,6 +1,7 @@
+#!/usr/bin/php
 <?php
 	// The stricter we are, the quicker the program should run
-	error_reporting(E_STRICT);
+	error_reporting(-1);
 
 	// Working Location
 	$dir = dirname(__FILE__);
