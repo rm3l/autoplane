@@ -1,0 +1,136 @@
+
+[1351334146.4329]    	Started Logging for: 'Main'
+AutoPlane  Copyright (C) 2012  Paul Hutchinson
+    This program comes with ABSOLUTELY NO WARRANTY; for details see license.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; see license for details.
+
+[1351334146.4342]    	PHP Version: 5.4.4-7
+[1351334146.4349]    	Started Logging for: 'GPS'
+[1351334146.4355]    	Creating new GPS Point
+[1351334146.4362]    		Updaing GPS
+[1351334146.4368]    			Setting Latitude to 25
+[1351334146.4374]    			Setting Longitude to 21
+[1351334146.4379]    			Setting Altitude to 9
+[1351334146.4385]    			Setting Time to 1351334146.4347
+[1351334146.4393]    	Started Logging for: 'GPS'
+[1351334146.44]    	Creating new GPS Point
+[1351334146.4406]    		Updaing GPS
+[1351334146.4411]    			Setting Latitude to 25
+[1351334146.4416]    			Setting Longitude to 20
+[1351334146.4422]    			Setting Altitude to 3
+[1351334146.4427]    			Setting Time to 1351334146.4392
+[1351334146.4434]    	Started Logging for: 'Tilt'
+[1351334146.444]    	Creating new Tilt
+[1351334146.4446]    		Updating Tilt
+[1351334146.4451]    			Setting Tilt X to 100
+[1351334146.4457]    			Setting Tilt Y to 20
+[1351334146.4463]    	Started Logging for: 'Tilt'
+[1351334146.4469]    	Creating new Tilt
+[1351334146.4474]    		Updating Tilt
+[1351334146.4481]    			Setting Tilt X to -30
+[1351334146.4486]    			Setting Tilt Y to 10
+[1351334146.4494]    	Started Logging for: 'Math'
+[1351334146.45]    	Creating new Math Engine
+[1351334146.4507]    	Started Logging for: 'Camera'
+[1351334146.4513]    	Creating new Camera
+[1351334146.452]    	Taking snap
+[1351334146.4527]    	Device doesn't exist
+[1351334146.4532]    	Validation failed
+[1351334146.4538]    		Getting distance from two points
+[1351334146.4549]    		Getting speed from two points
+[1351334146.4555]    		Getting distance from two points
+[1351334146.4564]    		Getting bearing from two points
+[1351334146.4572]    		Converting bearing to English
+[1351334146.4579]    	Collect tilt details
+[1351334146.4585]    	Collect tilt details
+[1351334146.4591]    		Calculating required roll
+[1351334146.4599]    	Started Logging for: 'C&C'
+[1351334146.4605]    	Creating new Command and Control Center
+[1351334146.4621]    	Started Logging for: 'KML'
+[1351334146.4627]    	Creating new KML parse engine
+[1351334146.4634]    	Opening File 
+[1351334146.466]    	Started Logging for: 'Flight'
+[1351334146.467]    		Flight name set to: The flight of tests
+[1351334146.468]    		Incorrect line string parameters. Line: ''
+[1351334146.4688]    	Started Logging for: 'GPS'
+[1351334146.4695]    	Creating new GPS Point
+[1351334146.4701]    		Updaing GPS
+[1351334146.4706]    			Setting Latitude to -112.25507853378
+[1351334146.4712]    			Setting Longitude to 36.079549521456
+[1351334146.4719]    			Setting Altitude to 2357
+[1351334146.4728]    	Started Logging for: 'GPS'
+[1351334146.4734]    	Creating new GPS Point
+[1351334146.4739]    		Updaing GPS
+[1351334146.4745]    			Setting Latitude to -112.25492770397
+[1351334146.475]    			Setting Longitude to 36.081170834921
+[1351334146.4756]    			Setting Altitude to 2357
+[1351334146.4764]    	Started Logging for: 'GPS'
+[1351334146.4769]    	Creating new GPS Point
+[1351334146.4775]    		Updaing GPS
+[1351334146.4781]    			Setting Latitude to -112.25525050691
+[1351334146.4786]    			Setting Longitude to 36.082607613073
+[1351334146.4793]    			Setting Altitude to 2357
+[1351334146.4802]    	Started Logging for: 'GPS'
+[1351334146.4808]    	Creating new GPS Point
+[1351334146.4813]    		Updaing GPS
+[1351334146.482]    			Setting Latitude to -112.25645401584
+[1351334146.4826]    			Setting Longitude to 36.083956605885
+[1351334146.4832]    			Setting Altitude to 2357
+[1351334146.484]    	Started Logging for: 'GPS'
+[1351334146.4845]    	Creating new GPS Point
+[1351334146.4851]    		Updaing GPS
+[1351334146.4857]    			Setting Latitude to -112.25802389764
+[1351334146.4863]    			Setting Longitude to 36.085114010448
+[1351334146.4868]    			Setting Altitude to 2357
+[1351334146.4877]    	Started Logging for: 'GPS'
+[1351334146.4884]    	Creating new GPS Point
+[1351334146.489]    		Updaing GPS
+[1351334146.4897]    			Setting Latitude to -112.2595218489
+[1351334146.4902]    			Setting Longitude to 36.085843552394
+[1351334146.4908]    			Setting Altitude to 2357
+[1351334146.4917]    	Started Logging for: 'GPS'
+[1351334146.4923]    	Creating new GPS Point
+[1351334146.4928]    		Updaing GPS
+[1351334146.4934]    			Setting Latitude to -112.26082163476
+[1351334146.4939]    			Setting Longitude to 36.086126345486
+[1351334146.4945]    			Setting Altitude to 2357
+[1351334146.4953]    	Started Logging for: 'GPS'
+[1351334146.496]    	Creating new GPS Point
+[1351334146.4965]    		Updaing GPS
+[1351334146.4971]    			Setting Latitude to -112.26207342866
+[1351334146.4977]    			Setting Longitude to 36.086260190851
+[1351334146.4982]    			Setting Altitude to 2357
+[1351334146.4992]    	Started Logging for: 'GPS'
+[1351334146.4998]    	Creating new GPS Point
+[1351334146.5003]    		Updaing GPS
+[1351334146.5009]    			Setting Latitude to -112.26332049285
+[1351334146.5015]    			Setting Longitude to 36.086215198601
+[1351334146.502]    			Setting Altitude to 2357
+[1351334146.5029]    	Started Logging for: 'GPS'
+[1351334146.5034]    	Creating new GPS Point
+[1351334146.5041]    		Updaing GPS
+[1351334146.5047]    			Setting Latitude to -112.26449638464
+[1351334146.5052]    			Setting Longitude to 36.086278979453
+[1351334146.5058]    			Setting Altitude to 2357
+[1351334146.5066]    	Started Logging for: 'GPS'
+[1351334146.5072]    	Creating new GPS Point
+[1351334146.5077]    		Updaing GPS
+[1351334146.5083]    			Setting Latitude to -112.26569695546
+[1351334146.5089]    			Setting Longitude to 36.086495990906
+[1351334146.5095]    			Setting Altitude to 2357
+[1351334146.5102]    		Incorrect line string parameters. Line: ''
+[1351334146.5109]    	Started Logging for: 'GPS'
+[1351334146.5114]    	Creating new GPS Point
+[1351334146.512]    		Updaing GPS
+[1351334146.5126]    			Setting Latitude to -112.24207342866
+[1351334146.5131]    			Setting Longitude to 36.026260190821
+[1351334146.5137]    			Setting Altitude to 2100
+[1351334146.5161]    	Started Logging for: 'File Writer'
+[1351334146.5168]    		Opening file ./flights/demo.kml
+[1351334146.5187]    		Setting write mode to w
+[1351334146.5204]    	Closing file: ./flights/26demo.kml
+[1351334147.5213]    	Taking snap
+[1351334147.522]    	Device doesn't exist
+[1351334147.5226]    	Validation failed
+[1351334147.5236]    	Memory peak usage 512.00K
