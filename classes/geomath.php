@@ -3,6 +3,7 @@
 		function __construct () {
 			parent::__construct("Math");
 			$this->log("Creating new Math Engine", 0);
+			$this->tab(1);
 		}
 
 		private function validateGps ($gps1 = false, $gps2 = false, $unit = false) {
@@ -94,10 +95,10 @@
 		// Gets the speed in Miles/Kilometers or Nautical miles
 		public function speed ($gps1 = false, $gps2 = false, $unit = "M") {
 			$this->log("Getting speed from two points", 0);
-			if (!$this->validateGps(&$gps1, &$gps2, &$unit)) {
+			if (!$this->validateGps($gps1, $gps2, $unit)) {
 				return false;
 			}
-			$distance = $this->distance(&$gps1, &$gps2, &$unit);
+			$distance = $this->distance($gps1, $gps2, $unit);
 			if ($distance === false) {
 				return false;
 			}
@@ -136,7 +137,7 @@
 			}
 		}
 
-		private function validateTilt ($tilt = false) {
+		private function validateTilt (&$tilt = false) {
 			if (!is_array($tilt) || !is_float($tilt["x"]) || !is_float($tilt["y"])) {
 				$this->log("Tilt invalid", 2);
 				return false;
@@ -146,7 +147,7 @@
 
 		public function rollTo ($tilt1 = false, $tilt2 = false) {
 			$this->log("Calculating required roll");
-			if (!$this->validateTilt(&$tilt1) || !$this->validateTilt(&$tilt2)) {
+			if (!$this->validateTilt($tilt1) || !$this->validateTilt($tilt2)) {
 				return false;
 			}
 			return array(

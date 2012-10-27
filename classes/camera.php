@@ -12,13 +12,15 @@
 		function __construct ($file = false, $size = false, $quality = false, $rotate = false) {
 			parent::__construct("Camera");
 			$this->log("Creating new Camera", 0);
-			$this->setFile(&$file);
-			$this->setSize(&$size);
+			$this->tab(1);
+			$this->setFile($file);
+			$this->setSize($size);
 			$this->setCounter(0);
-			$this->setQuality(&$quality);
-			$this->setRotate(&$rotate);
+			$this->setQuality($quality);
+			$this->setRotate($rotate);
 			$this->file = ".".DIRECTORY_SEPARATOR."images".DIRECTORY_SEPARATOR."flight_";
 			$this->device = DIRECTORY_SEPARATOR."dev".DIRECTORY_SEPARATOR."video0";
+			$this->tab(-1);
 			return true;
 		}
 
@@ -26,12 +28,12 @@
 		public function takePhoto () {
 			$this->log("Taking snap", 0);
 			// Do the validation
-			if (!$this->validateDevice(&$this->device) ||
-				!$this->validateFile(&$this->file) ||
-				!$this->validateSize(&$this->size) ||
-				!$this->validateCounter(&$this->counter) ||
-				!$this->validateQuality(&$this->quality) ||
-				!$this->validateRotate(&$this->rotate)
+			if (!$this->validateDevice($this->device) ||
+				!$this->validateFile($this->file) ||
+				!$this->validateSize($this->size) ||
+				!$this->validateCounter($this->counter) ||
+				!$this->validateQuality($this->quality) ||
+				!$this->validateRotate($this->rotate)
 			) {
 				$this->log("Validation failed", 1);
 				return false;
@@ -74,7 +76,7 @@
 			return true;
 		}
 
-		public function validateDevice ($device = false) {
+		public function validateDevice (&$device = false) {
 			if (!is_string($device)) {
 				$this->log("Invalid datatype for video device", 1);
 				return false;
@@ -86,7 +88,7 @@
 			return true;
 		}
 
-		private function validateCounter ($counter = false) {
+		private function validateCounter (&$counter = false) {
 			if (!is_int($counter)) {
 				if ($counter !== false) {
 					$this->log("Malformed counter", 1);
@@ -97,14 +99,14 @@
 		}
 
 		public function setCounter ($counter = false) {
-			if ($this->validatecounter(&$counter) === false) {
+			if ($this->validatecounter($counter) === false) {
 				return false;
 			}
 			$this->counter = &$counter;
 			return true;
 		}
 
-		private function validateQuality ($quality = false) {
+		private function validateQuality (&$quality = false) {
 			if (!is_int($quality)) {
 				if ($quality !== false) {
 					$this->log("Malformed quality", 1);
@@ -119,14 +121,14 @@
 		}
 
 		public function setQuality ($quality = false) {
-			if ($this->validateQuality(&$quality) === false) {
+			if ($this->validateQuality($quality) === false) {
 				return false;
 			}
 			$this->quality = &$quality;
 			return true;
 		}
 
-		private function validateSize ($size = false) {
+		private function validateSize (&$size = false) {
 			if (!is_string($size)) {
 				if ($size !== false) {
 					$this->log("Malformed size", 1);
@@ -150,14 +152,14 @@
 		}
 
 		public function setSize ($size = false) {
-			if (!$this->validateSize(&$size)) {
+			if (!$this->validateSize($size)) {
 				return false;
 			}
 			$this->size = $size;
 			return true;
 		}
 
-		private function validateFile ($file = false) {
+		private function validateFile (&$file = false) {
 			if (!is_string($file)) {
 				if ($file !== false) {
 					$this->log("Malformed file", 1);
@@ -177,14 +179,14 @@
 		}
 
 		public function setFile($file = false) {
-			if (!$this->validateFile(&$file)) {
+			if (!$this->validateFile($file)) {
 				return false;
 			}
 			$this->file = $file;
 			return true;
 		}
 
-		private function validateRotate ($rotate = false) {
+		private function validateRotate (&$rotate = false) {
 			if (!is_int($rotate)) {
 				if ($rotate !== false) {
 					$this->log("Malformed rotation", 1);
@@ -198,7 +200,7 @@
 		}
 
 		public function setRotate ($rotate = false) {
-			if (!$this->validateFile(&$rotate)) {
+			if (!$this->validateFile($rotate)) {
 				return false;
 			}
 			$this->rotate = &$rotate;
@@ -206,7 +208,7 @@
 		}
 
 		public function setDevice ($device = false) {
-			if (!$this->validateDevice(&$device)) {
+			if (!$this->validateDevice($device)) {
 				return false;
 			}
 			$this->device = $device;

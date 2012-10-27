@@ -5,10 +5,12 @@
 		function  __construct ($x = false, $y = false) {
 			parent::__construct("Tilt");
 			$this->log("Creating new Tilt", 0);
-			return $this->update(&$x, &$y);
+			$this->tab(1);
+			$this->update($x, $y);
+			$this->tab(-1);
 		}
 
-		public function setX ($x = false) {
+		public function setX (&$x = false) {
 			if (!is_int($x) && !is_float($x)) {
 				if ($x !== false) {
 					$this->log("Failed to set Tilt X to {$x}", 0);
@@ -20,7 +22,7 @@
 			return true;
 		}
 
-		public function setY ($y = false) {
+		public function setY (&$y = false) {
 			if (!is_int($y) && !is_float($y)) {
 				if ($y !== false) {
 					$this->log("Failed to set Tilt Y to {$y}", 0);
@@ -45,8 +47,11 @@
 		}
 
 		public function update ($x = false, $y = false) {
-			$this->setX(&$x);
-			$this->setY(&$y);
+			$this->log('Updating Tilt', 0);
+			$this->tab(1);
+			$this->setX($x);
+			$this->setY($y);
+			$this->tab(-1);
 			return true;
 		}
 	}

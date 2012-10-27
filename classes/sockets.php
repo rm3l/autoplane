@@ -10,8 +10,8 @@
 		function __construct ($location = false, $port = false) {
 			parent::__construct("Socket");
 			$this->log("Creating new Socket", 0);
-			$this->setLocation(&$location);
-			$this->setPort(&$port);
+			$this->setLocation($location);
+			$this->setPort($port);
 			return true;
 		}
 
@@ -47,8 +47,8 @@
 		}
 
 		public function bind ($location = false, $port = false) {
-			$this->setLocation(&$location);
-			$this->setPort(&$port);
+			$this->setLocation($location);
+			$this->setPort($port);
 			if (socket_bind($this->connection, $this->location, $this->port) === false) {
 				$this->_socketError();
 				return false;
@@ -56,8 +56,8 @@
 		}
 
 		public function connect ($location = false, $port = false) {
-			$this->setLocation(&$location);
-			$this->setPort(&$port);
+			$this->setLocation($location);
+			$this->setPort($port);
 			if (is_resource($this->connection)) {
 				$this->log("Not opening socket because it's already open", 2);
 				return false;

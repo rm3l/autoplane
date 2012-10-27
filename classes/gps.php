@@ -9,11 +9,13 @@
 		function __construct ($lat = false, $long = false, $alt = false, $time = false, $dop = false) {
 			parent::__construct("GPS");
 			$this->log("Creating new GPS Point", 0);
-			$this->update(&$lat, &$long, &$alt, &$time, &$dop);
+			$this->tab(1);
+			$this->update($lat, $long, $alt, $time, $dop);
+			$this->tab(-1);
 			return true;
 		}
 
-		public function setDop ($dop = false) {
+		public function setDop (&$dop = false) {
 			if (!is_int($dop)) {
 				if ($dop !== false) {
 					$this->log("Failed to set Dilution of Precision to {$dop}", 0);
@@ -25,7 +27,7 @@
 			return true;
 		}
 
-		public function setLat ($lat = false) {
+		public function setLat (&$lat = false) {
 			if (!is_int($lat) && !is_float($lat)) {
 				if ($lat !== false) {
 					$this->log("Failed to set Latitude to {$lat}", 0);
@@ -37,7 +39,7 @@
 			return true;
 		}
 
-		public function setLong ($long = false) {
+		public function setLong (&$long = false) {
 			if (!is_int($long) && !is_float($long)) {
 				if ($long !== false) {
 					$this->log("Failed to set Longitude to {$long}", 0);
@@ -49,7 +51,7 @@
 			return true;
 		}
 
-		public function setAlt ($alt = false) {
+		public function setAlt (&$alt = false) {
 			if (!is_int($alt) && !is_float($alt)) {
 				if ($alt !== false) {
 					$this->log("Failed to set Altitude to {$alt}", 0);
@@ -61,7 +63,7 @@
 			return true;
 		}
 
-		public function setTime ($time = false) {
+		public function setTime (&$time = false) {
 			if (!is_int($time) && !is_float($time)) {
 				if ($time !== false) {
 					$this->log("Failed to set Time to {$time}", 0);
@@ -88,11 +90,13 @@
 
 		public function update ($lat = false, $long = false, $alt = false, $time = false, $dop = false) {
 			$this->log("Updaing GPS", 0);
-			$this->setLat(&$lat);
-			$this->setLong(&$long);
-			$this->setAlt(&$alt);
-			$this->setTime(&$time);
-			$this->setDop(&$dop);
+			$this->tab(1);
+			$this->setLat($lat);
+			$this->setLong($long);
+			$this->setAlt($alt);
+			$this->setTime($time);
+			$this->setDop($dop);
+			$this->tab(-1);
 		}
 	}
 ?>

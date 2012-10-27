@@ -6,7 +6,7 @@
 		function __construct ($url = false) {
 			parent::__construct("C&C");
 			$this->log("Creating new Command and Control Center", 0);
-			$this->setUrl(&$url);
+			$this->setUrl($url);
 			return true;
 		}
 

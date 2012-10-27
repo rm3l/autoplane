@@ -105,8 +105,8 @@
  			$kml.= "</kml>";
 
 			if ($file !== false) {
-				$filewriter = new FileWriter(&$file, true, "w");
-				return $filewriter->write(&$kml) !== false;
+				$filewriter = new FileWriter($file, true, "w");
+				return $filewriter->write($kml) !== false;
 			} else {
 				return $kml;
 			}

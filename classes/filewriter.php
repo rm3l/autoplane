@@ -7,8 +7,10 @@
 
 		function __construct ($file = false, $unique = false, $mode = false) {
 			parent::__construct("File Writer");
-			$this->setFile(&$file, &$unique);
-			$this->setMode(&$mode);
+			$this->tab(1);
+			$this->setFile($file, $unique);
+			$this->setMode($mode);
+			$this->tab(-1);
 		}
 
 		public function setMode ($mode = false) {

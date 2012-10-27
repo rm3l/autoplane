@@ -9,10 +9,10 @@
 		function __construct ($key = false, $flags = false, $mode = false, $size = false) {
 			parent::__construct("SHMOP");
 			$this->log("Created new SHMOP class", 0);
-			$a = $this->setKey(&$key);
-			$b = $this->setFlags(&$flags);
-			$c = $this->setMode(&$mode);
-			$d = $this->setSize(&$size);
+			$a = $this->setKey($key);
+			$b = $this->setFlags($flags);
+			$c = $this->setMode($mode);
+			$d = $this->setSize($size);
 			if ($a && $b && $c && $d) {
 				$this->open();
 			}
@@ -20,10 +20,10 @@
 		}
 
 		public function open ($key = false, $flags = false, $mode = false, $size = false) {
-			$this->setKey(&$key);
-			$this->setFlags(&$flags);
-			$this->setMode(&$mode);
-			$this->setSize(&$size);
+			$this->setKey($key);
+			$this->setFlags($flags);
+			$this->setMode($mode);
+			$this->setSize($size);
 			if (!$this->validate()) {
 				$this->log("Validation failed", 1);
 				return false;

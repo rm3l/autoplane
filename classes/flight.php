@@ -8,7 +8,7 @@
 
 		function __construct ($kml = false) {
 			parent::__construct("Flight");
-			$this->loadFlight(&$kml);
+			$this->loadFlight($kml);
 		}
 
 		public function reset () {
@@ -27,6 +27,8 @@
 				return false;
 			}
 
+			$this->tab(1);
+
 			// Set Meta
 			$this->waypoints = array();
 			$this->setName((string)$kml->Document->name);
@@ -42,11 +44,12 @@
 				}
 				$parts = explode(",", $point);
 				if (count($parts) != 3) {
-					$this->log("Incorrect line string parameters. Line: {$point}", 0);
+					$this->log("Incorrect line string parameters. Line: '{$point}'", 1);
 					continue;
 				}
 				$this->waypoints[] = new GPS ((float)$parts[0], (float)$parts[1], (float)$parts[2]);
 			}
+			$this->tab(-1);
 			return true;
 		}
 
