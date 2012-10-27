@@ -98,13 +98,18 @@
 		}
 
 		// Function that will display the error message
-		public function displayMessage ($id = false) {
+		public function displayMessage ($id = false, $treeMode = true) {
 			if (!is_int($id) || !isset($this->messages[$id])) {
 				return false;
 			}
 			$msg = &$this->messages[$id];
 			if ($GLOBALS["cli"]) { // Command line mode
-				echo "[", $msg["time"], "]    ", str_repeat("\t", $msg["tab"] + 1) , $msg["message"], PHP_EOL;
+				if ($treeMode) {
+					$tabCount = $msg["tab"] + 1;
+				} else {
+					$tabCount = 1;
+				}
+				echo "[", $msg["time"], "]    ", str_repeat("\t", $tabCount) , $msg["message"], PHP_EOL;
 			} else { // HTML mode
 				echo "<span class='time'>", $msg["time"], "</span>",
 				     "<span class='message lvl-", $msg["level"], " indent-",$msg["tab"] + 1," process-", $this->process,"'>", $msg["message"], "</span><br />";
