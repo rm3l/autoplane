@@ -1,0 +1,47 @@
+/*-------------------------------------------*/
+/*                    IE
+/*-------------------------------------------*/
+
+/* main navigation menu
+/*-------------------------------------------*/
+
+#main-nav-menu ul li a{
+font-weight: normal;
+}
+
+/* page content
+/*-------------------------------------------*/
+
+#page-content:before{
+background: none;
+}
+
+/* buttons
+/*-------------------------------------------*/
+
+button ,
+.button{
+font-weight: normal;
+}
+
+/* flickr-feed
+/*-------------------------------------------*/
+
+.flickr-feed .image .overlay-icon ,
+.flickr-feed .image .overlay-color{
+display: none;
+}
+
+/* common
+/*-------------------------------------------*/
+
+.has-divider.last-child ,
+.has-divider.micro.last-child{
+padding-bottom: 0;
+margin-bottom: 0;
+}
+
+.has-divider.last-child:before{
+height: 0;
+background: none;
+}
