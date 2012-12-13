@@ -33,13 +33,19 @@ int main(int argc, char **argv) {
 	float xa, ya, za;
 	int fd;
 	unsigned char buf[16];
-   
-   if ((fd = open("/dev/i2c-0", O_RDWR)) < 0) {
+	int totalRuns;
+
+	if (argc != 3) {
+		fprintf(stdout, "Usage: BINARY TOTAL_RUNS INTAVAL\n");
+		exit(1);
+	}
+
+	if ((fd = open("/dev/i2c-0", O_RDWR)) < 0) {
 		// Open port for reading and writing
 		fprintf(stderr, "Failed to open i2c bus\n");
 		exit(1);
 	}
-   
+
 	/* initialise ADXL345 */
 
 	selectDevice(fd, ADXL345_I2C_ADDR, "ADXL345");
@@ -50,7 +56,8 @@ int main(int argc, char **argv) {
 	writeToDevice(fd, 0x31, 0);
 	writeToDevice(fd, 0x31, 11);
 
-	while (1) {
+	totalRuns = atoi(argv[1]);
+	while (totalRuns != 0) {
 		/* select ADXL345 */
 		selectDevice(fd, ADXL345_I2C_ADDR, "ADXL345");
 		buf[0] = 0x32;
@@ -71,9 +78,10 @@ int main(int argc, char **argv) {
 			xa = (90.0 / 256.0) * (float) x;
 			ya = (90.0 / 256.0) * (float) y;
 			za = (90.0 / 256.0) * (float) z;
-			printf("%4.0f %4.0f %4.0f\n", xa, ya, za);
+			printf("%4.0f %4.0f %4.0f\r\n", xa, ya, za);
 		}
-		usleep(100000);
-	} 
+		usleep(atoi(argv[2]));
+		--totalRuns;
+	}
    return 0;
 }
