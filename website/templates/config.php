@@ -1,4 +1,4 @@
-<?
+<?php
 	##### Config me #####
 	$rpi = true; // Is this website running on the same RPI as AutoPlane?
 	$email = 'PaulHappyHutchinson@gmail.com'; // Where do you want your contact form to go?

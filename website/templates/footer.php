@@ -18,7 +18,7 @@
 						</div><!-- .widget-content -->
 					</div><!-- .widget -->
 					<div class="widget span-3">
-						<h4 class="widget-title">Twitter Feed</h4>
+						<h4 class="widget-title">Log Feed</h4>
 						<div class="widget-content">
 							<div class="twitter-feed" data-user="envato">
 								<div class="tweet">

@@ -1,7 +1,6 @@
-<?
+<?php
 	error_reporting(E_ALL);
 	include 'config.php';
-	include 'functions.php';
 	if (!isset($pagetitle)) {
 		$pagetitle = $tagline;
 	}
@@ -12,8 +11,7 @@
 			echo ' current';
 		}
 	}
-?>
-﻿<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 	<head>
 		<!-- Meta -->
@@ -60,10 +58,8 @@
 		<![endif]-->
 		<script type="text/javascript" src="scripts/jquery.js"></script>
 	</head>
-
 	<body>
 		<div id="main-wrap">
-
 			<div id="announcement" class="container-wrap">
 				<div id="announcement-container" class="container">
 					<div id="announcement-content">

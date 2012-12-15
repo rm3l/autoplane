@@ -2,6 +2,11 @@
 /*                  LAYOUT
 /*-------------------------------------------*/
 
+.knob-wrapper div {
+	display: block !important;
+	margin: 0px auto;
+}
+
 /* general
 /*-------------------------------------------*/
 
